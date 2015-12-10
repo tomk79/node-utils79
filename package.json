@@ -1,0 +1,22 @@
+{
+  "name": "utils79",
+  "version": "0.0.1-alpha.1",
+  "description": "NodeJS Utilities.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --ui tdd ./tests/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomk79/node-utils79.git"
+  },
+  "author": "Tomoya Koyanagi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tomk79/node-utils79/issues"
+  },
+  "homepage": "https://github.com/tomk79/node-utils79#readme",
+  "devDependencies": {
+    "mocha": "^2.3.4"
+  }
+}
