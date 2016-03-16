@@ -43,5 +43,27 @@
 		return bin;
 	}
 
+	/**
+	 * ファイルが存在するか調べる
+	 */
+	exports.is_file = function( path ){
+		var fs = require('fs');
+		if( !fs.existsSync(path) || !fs.statSync(path).isFile() ){
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * ディレクトリが存在するか調べる
+	 */
+	exports.is_dir = function( path ){
+		var fs = require('fs');
+		if( !fs.existsSync(path) || !fs.statSync(path).isDirectory() ){
+			return false;
+		}
+		return true;
+	}
+
 
 })(exports);
