@@ -65,5 +65,43 @@
 		return true;
 	}
 
+	/**
+	 * 入力値のセットを確認する
+	 * 内部で validator を使用します。
+	 * validator のAPI一覧 https://www.npmjs.com/package/validator を参照してください。
+	 */
+	exports.validate = function(values, rules, callback){
+		callback = callback || function(){};
+		var err = null;
+		var validator = require('validator');
+
+		for( var key in rules ){
+			var rule = rules[key];
+			// console.log(values[key]);
+			for( var idx in rule ){
+				// console.log(idx);
+				// console.log(rule[idx]);
+				var isNot = false;
+				var method = rule[idx][0];
+				// console.log(method);
+				if( method.match(new RegExp('^(\\!)?([\\s\\S]*)$')) ){
+					isNot = (RegExp.$1 == '!' ? true : false );
+					method = RegExp.$2;
+				}
+				var isValid = validator[method]( values[key] );
+				// console.log(isValid);
+				if( !isNot && !isValid || isNot && isValid ){
+					if(err === null){
+						err = {};
+					}
+					err[key] = err[key] || [];
+					err[key].push(rule[idx][1])
+				}
+			}
+		}
+
+		callback(err);
+	}
+
 
 })(exports);

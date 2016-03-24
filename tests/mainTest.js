@@ -50,3 +50,40 @@ describe('ファイルとディレクトリの存在確認', function() {
 	});
 
 });
+
+describe('バリデーション', function() {
+
+	it('validate()', function(done) {
+		this.timeout(10*1000);
+
+		utils79.validate(
+			{
+				"val1": "test@example.com@",
+				"val2": "ff990x",
+				"val3": ""
+			},
+			{
+				"val1": [
+					['isEmail', '!isEmail です']
+				],
+				"val2": [
+					['isHexColor', '!isHexColor です'],
+					['isNull', '!isNull です']
+				],
+				"val3": [
+					['!isNull', 'isNull です']
+				]
+			},
+			function(err){
+				// console.log(err);
+				assert.strictEqual(err.val1[0], '!isEmail です');
+				assert.strictEqual(err.val2[0], '!isHexColor です');
+
+			}
+		);
+
+		done();
+
+	});
+
+});

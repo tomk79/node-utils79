@@ -16,7 +16,10 @@
     "url": "https://github.com/tomk79/node-utils79/issues"
   },
   "homepage": "https://github.com/tomk79/node-utils79#readme",
+  "dependencies": {
+    "validator": "^5.1.0"
+  },
   "devDependencies": {
-    "mocha": "^2.3.4"
+      "mocha": "^2.3.4"
   }
 }
