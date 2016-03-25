@@ -81,21 +81,29 @@
 			for( var idx in rule ){
 				// console.log(idx);
 				// console.log(rule[idx]);
+				var currentRule = rule[idx];
+				var errorMessage = 'ERROR on '+key;
+				var isValid = null;
+
+				errorMessage = currentRule[currentRule.length-1];
+				delete(currentRule[currentRule.length-1]);
+
 				var isNot = false;
-				var method = rule[idx][0];
-				// console.log(method);
+				var method = currentRule.shift();
 				if( method.match(new RegExp('^(\\!)?([\\s\\S]*)$')) ){
 					isNot = (RegExp.$1 == '!' ? true : false );
 					method = RegExp.$2;
 				}
-				var isValid = validator[method]( values[key] );
-				// console.log(isValid);
+				currentRule.unshift(values[key]);
+				isValid = validator[method].apply( undefined, currentRule );
+
 				if( !isNot && !isValid || isNot && isValid ){
+					// NGパターン
 					if(err === null){
 						err = {};
 					}
 					err[key] = err[key] || [];
-					err[key].push(rule[idx][1])
+					err[key].push(errorMessage)
 				}
 			}
 		}

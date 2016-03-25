@@ -60,11 +60,14 @@ describe('バリデーション', function() {
 			{
 				"val1": "test@example.com@",
 				"val2": "ff990x",
-				"val3": ""
+				"val3": "",
+				"random": "適当な文字列を書きました。abcdefghijklmnopqrstuvwxyz!@1234567890",
 			},
 			{
 				"val1": [
-					['isEmail', '!isEmail です']
+					['isEmail', '!isEmail です'],
+					['isLength', {min:5, max: 40}, '5文字以上40文字以下で指定してください。'],
+					['isLength', {min:1000, max: 2000}, '1000文字以上2000文字以下で指定してください。']
 				],
 				"val2": [
 					['isHexColor', '!isHexColor です'],
@@ -77,6 +80,7 @@ describe('バリデーション', function() {
 			function(err){
 				// console.log(err);
 				assert.strictEqual(err.val1[0], '!isEmail です');
+				assert.strictEqual(err.val1[1], '1000文字以上2000文字以下で指定してください。');
 				assert.strictEqual(err.val2[0], '!isHexColor です');
 
 			}
