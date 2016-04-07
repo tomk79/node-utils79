@@ -66,6 +66,30 @@
 	}
 
 	/**
+	 * パス文字列から、ファイル名を取り出す
+	 */
+	exports.basename = function( path ){
+		var rtn = '';
+		rtn = path.replace( new RegExp('^.*[\\/\\\\]'), '' );
+		return rtn;
+	}
+
+	/**
+	 * ディレクトリ名を得る
+	 */
+	exports.dirname = function(path){
+		return path.replace(/(?:\/|\\)[^\/\\]*(?:\/|\\)?$/, '');
+	}
+
+	/**
+	 * 正規表現で使えるようにエスケープ処理を施す
+	 */
+	exports.regexp_quote = function(str) {
+		if( typeof(str) !== typeof('') ){return str;}
+		return str.replace(/([.*+?^=!:${}()|[\]\/\\])/g, "\\$1");
+	}
+
+	/**
 	 * 入力値のセットを確認する
 	 * 内部で validator を使用します。
 	 * validator のAPI一覧 https://www.npmjs.com/package/validator を参照してください。

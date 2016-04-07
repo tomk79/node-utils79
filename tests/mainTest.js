@@ -51,6 +51,41 @@ describe('ファイルとディレクトリの存在確認', function() {
 
 });
 
+describe('ファイル名とディレクトリ名の取得', function() {
+
+	it('basename', function(done) {
+		this.timeout(10*1000);
+
+		assert.strictEqual(utils79.basename('./a/b/cde.fg'), 'cde.fg');
+		assert.strictEqual(utils79.basename('.\\a\\b\\cde.fg'), 'cde.fg');
+		done();
+
+	});
+
+	it('dirname', function(done) {
+		this.timeout(10*1000);
+
+		assert.strictEqual(utils79.dirname('./a/b/cde.fg'), './a/b');
+		assert.strictEqual(utils79.dirname('.\\a\\b\\cde.fg'), '.\\a\\b');
+		done();
+
+	});
+
+});
+
+describe('正規表現のエスケープ', function() {
+
+	it('regexp_quote', function(done) {
+		this.timeout(10*1000);
+
+		assert.strictEqual(utils79.regexp_quote('http://www.com/a/b/cde.fg?a=b'), 'http\\:\\/\\/www\\.com\\/a\\/b\\/cde\\.fg\\?a\\=b');
+		assert.strictEqual(utils79.regexp_quote('(){}!'), '\\(\\)\\{\\}\\!');
+		done();
+
+	});
+
+});
+
 describe('バリデーション', function() {
 
 	it('validate()', function(done) {
