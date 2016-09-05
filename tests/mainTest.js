@@ -24,6 +24,21 @@ describe('文字列に変換する', function() {
 });
 
 
+describe('文字列の前後から空白文字列を削除する', function() {
+
+	it('trim', function(done) {
+		this.timeout(10*1000);
+
+		assert.strictEqual(utils79.trim( "\n\n\n\n\n"+'abc'+"\n\n\r\n" ), 'abc');
+		assert.strictEqual(utils79.trim( '     			abc   	' ), 'abc');
+		assert.strictEqual(utils79.trim( '     	'+"\n\n"+'		abc   	' ), 'abc');
+		assert.strictEqual(utils79.trim( 'abc' ), 'abc');
+		done();
+
+	});
+
+});
+
 describe('Base64に変換する', function() {
 
 	it('Base64変換', function(done) {
@@ -67,6 +82,23 @@ describe('ファイル名とディレクトリ名の取得', function() {
 
 		assert.strictEqual(utils79.dirname('./a/b/cde.fg'), './a/b');
 		assert.strictEqual(utils79.dirname('.\\a\\b\\cde.fg'), '.\\a\\b');
+		done();
+
+	});
+
+});
+
+describe('パスの正規化', function() {
+
+	it('normalize_path', function(done) {
+		this.timeout(10*1000);
+
+		assert.strictEqual(utils79.normalize_path('//aaa//bbb//ccc'), '//aaa/bbb/ccc');
+		assert.strictEqual(utils79.normalize_path('http://www.com/a/b/cde.fg?a=b'), 'http://www.com/a/b/cde.fg?a=b');
+		assert.strictEqual(utils79.normalize_path('http:\\\\www.com\\a\\b\\cde.fg?a=b'), 'http://www.com/a/b/cde.fg?a=b');
+		assert.strictEqual(utils79.normalize_path('c:\\a\\b\\cde.fg#hoge'), '/a/b/cde.fg#hoge');
+		assert.strictEqual(utils79.normalize_path('c:\\a\\b\\cde.fg'), '/a/b/cde.fg');
+		assert.strictEqual(utils79.normalize_path('c:\\\\www.com\\a\\b\\cde.fg?a=b'), '//www.com/a/b/cde.fg?a=b');
 		done();
 
 	});
