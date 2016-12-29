@@ -24,6 +24,30 @@ describe('文字列に変換する', function() {
 });
 
 
+describe('文字列をn文字ずつ分割する', function() {
+
+	it('divide', function(done) {
+		this.timeout(10*1000);
+
+		// 文字列を整数等分して配列を返す。
+		assert.deepEqual(utils79.divide( "abcdefghi", 1 ), ['a','b','c','d','e','f','g','h','i'] );
+		assert.deepEqual(utils79.divide( "abcdefghi", 2 ), ['ab','cd','ef','gh','i'] ); // あまりがある場合は、最後の配列要素の文字数が端数になる。
+		assert.deepEqual(utils79.divide( "abcdefghi", 3 ), ['abc','def','ghi'] );
+
+		// 文字列以外の値は 文字列にキャストして扱われる
+		assert.deepEqual(utils79.divide( 1234567890, 2 ), ['12','34','56','78','90'] );
+		assert.deepEqual(utils79.divide( 1234567890.001, 2.0 ), ['12','34','56','78','90','.0','01'] );
+
+
+		assert.deepEqual(utils79.divide( "abcdefghi", 0 ), false ); // ゼロを受け付けない
+		assert.deepEqual(utils79.divide( "abcdefghi", -10 ), false ); // 負の値を受け付けない
+		assert.deepEqual(utils79.divide( "abcdefghi", 2.5 ), false ); // 整数以外を受け付けない
+		done();
+
+	});
+
+});
+
 describe('文字列の前後から空白文字列を削除する', function() {
 
 	it('trim', function(done) {
