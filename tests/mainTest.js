@@ -63,6 +63,44 @@ describe('文字列の前後から空白文字列を削除する', function() {
 
 });
 
+describe('配列(または連想配列)のキーの配列を取得する', function() {
+
+	it('array_keys', function(done) {
+		this.timeout(10*1000);
+
+		var keys = utils79.array_keys({
+			'a': 100,
+			'b': 200,
+			'c': 300
+		});
+
+		assert.strictEqual(keys[0], 'a');
+		assert.strictEqual(keys[1], 'b');
+		assert.strictEqual(keys[2], 'c');
+		done();
+
+	});
+
+});
+
+describe('配列(または連想配列)の要素数を数える', function() {
+
+	it('count', function(done) {
+		this.timeout(10*1000);
+
+		var count = utils79.count({
+			'a': 100,
+			'b': 200,
+			'c': 300
+		});
+
+		assert.strictEqual(count, 3);
+		done();
+
+	});
+
+});
+
 describe('Base64に変換する', function() {
 
 	it('Base64変換', function(done) {
