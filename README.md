@@ -80,7 +80,7 @@ URIスキーム(http, https, ftp など) で始まる場合、2つのスラッ�
 
 ## 更新履歴 - Change log
 
-### utils79@0.0.3 (2017-01-??)
+### utils79@0.0.3 (2017-01-15)
 
 - Add new API: array_keys()
 - Add new API: count()
