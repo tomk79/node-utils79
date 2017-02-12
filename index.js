@@ -34,6 +34,16 @@
 	exports.base64_decode = require('./apis/base64_decode.js');
 
 	/**
+	 * md5ハッシュを求める
+	 */
+	exports.md5 = require('./apis/md5.js');
+
+	/**
+	 * sha1ハッシュを求める
+	 */
+	exports.sha1 = require('./apis/sha1.js');
+
+	/**
 	 * ファイルが存在するか調べる
 	 */
 	exports.is_file = require('./apis/is_file.js');

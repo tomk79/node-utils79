@@ -126,6 +126,24 @@ describe('Base64に変換する', function() {
 
 });
 
+describe('Hash', function() {
+
+	it('md5', function(done) {
+		this.timeout(10*1000);
+		assert.strictEqual(utils79.md5( 'TEST' ), '033bd94b1168d7e4f0d644c3c95e35bf');
+		done();
+
+	});
+
+	it('sha1', function(done) {
+		this.timeout(10*1000);
+		assert.strictEqual(utils79.sha1( 'TEST' ), '984816fd329622876e14907634264e6f332e9fb3');
+		done();
+
+	});
+
+});
+
 describe('ファイルとディレクトリの存在確認', function() {
 
 	it('is_file, is_dir', function(done) {
