@@ -54,6 +54,7 @@ describe('HTML特殊文字をエスケープする', function() {
 		this.timeout(10*1000);
 
 		assert.deepEqual(utils79.h( '<span class="test abc">test</span>' ), '&lt;span class=&quot;test abc&quot;&gt;test&lt;/span&gt;' );
+		assert.deepEqual(utils79.h( '<span class="test abc">test</span>'+"\n"+'<span class="test abc">test</span>' ), '&lt;span class=&quot;test abc&quot;&gt;test&lt;/span&gt;'+"\n"+'&lt;span class=&quot;test abc&quot;&gt;test&lt;/span&gt;' );
 		done();
 
 	});
