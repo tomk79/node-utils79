@@ -210,4 +210,9 @@
 		return rtn;
 	}
 
+	/**
+	 * HTML特殊文字をエスケープする
+	 */
+	exports.h = require('./apis/h.js');
+
 })(exports);

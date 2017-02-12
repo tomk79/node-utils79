@@ -48,6 +48,18 @@ describe('文字列をn文字ずつ分割する', function() {
 
 });
 
+describe('HTML特殊文字をエスケープする', function() {
+
+	it('h', function(done) {
+		this.timeout(10*1000);
+
+		assert.deepEqual(utils79.h( '<span class="test abc">test</span>' ), '&lt;span class=&quot;test abc&quot;&gt;test&lt;/span&gt;' );
+		done();
+
+	});
+
+});
+
 describe('文字列の前後から空白文字列を削除する', function() {
 
 	it('trim', function(done) {
