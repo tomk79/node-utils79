@@ -1,5 +1,7 @@
 # utils79
 
+Utility functions.
+
 ## Install
 
 ```
@@ -92,7 +94,7 @@ URIスキーム(http, https, ftp など) で始まる場合、2つのスラッ�
 
 ## 更新履歴 - Change log
 
-### utils79@0.0.4 (2017-??-??)
+### utils79@0.0.4 (2017-02-12)
 
 - Add new API: h()
 - Add new API: md5()

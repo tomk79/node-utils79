@@ -1,6 +1,6 @@
 {
   "name": "utils79",
-  "version": "0.0.4-alpha.1+nb",
+  "version": "0.0.4",
   "description": "NodeJS Utilities.",
   "main": "index.js",
   "scripts": {
