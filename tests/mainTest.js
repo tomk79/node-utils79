@@ -33,8 +33,12 @@ describe('文字列をn文字ずつ分割する', function() {
 		assert.deepEqual(utils79.divide( "abcdefghi", 1 ), ['a','b','c','d','e','f','g','h','i'] );
 		assert.deepEqual(utils79.divide( "abcdefghi", 2 ), ['ab','cd','ef','gh','i'] ); // あまりがある場合は、最後の配列要素の文字数が端数になる。
 		assert.deepEqual(utils79.divide( "abcdefghi", 3 ), ['abc','def','ghi'] );
+		assert.deepEqual(utils79.divide( "", 3 ), [] );
 
 		// 文字列以外の値は 文字列にキャストして扱われる
+		assert.deepEqual(utils79.divide( undefined, 2.0 ), [] );
+		assert.deepEqual(utils79.divide( null, 2.0 ), [] );
+		assert.deepEqual(utils79.divide( 0, 2 ), ['0'] );
 		assert.deepEqual(utils79.divide( 1234567890, 2 ), ['12','34','56','78','90'] );
 		assert.deepEqual(utils79.divide( 1234567890.001, 2.0 ), ['12','34','56','78','90','.0','01'] );
 
@@ -59,6 +63,18 @@ describe('HTML特殊文字をエスケープする', function() {
 
 	});
 
+	it('h(Non-Strings)', function(done) {
+		this.timeout(10*1000);
+
+		assert.deepEqual(utils79.h( undefined ), '' );
+		assert.deepEqual(utils79.h( null ), '' );
+		assert.deepEqual(utils79.h( 123 ), '123' );
+		assert.deepEqual(utils79.h( 123.12 ), '123.12' );
+		assert.deepEqual(utils79.h( ['array','array'] ), 'arrayarray' );
+		done();
+
+	});
+
 });
 
 describe('文字列の前後から空白文字列を削除する', function() {
@@ -70,6 +86,17 @@ describe('文字列の前後から空白文字列を削除する', function() {
 		assert.strictEqual(utils79.trim( '     			abc   	' ), 'abc');
 		assert.strictEqual(utils79.trim( '     	'+"\n\n"+'		abc   	' ), 'abc');
 		assert.strictEqual(utils79.trim( 'abc' ), 'abc');
+		done();
+
+	});
+
+	it('trim(Non-Strings)', function(done) {
+		this.timeout(10*1000);
+
+		assert.strictEqual(utils79.trim( undefined ), '');
+		assert.strictEqual(utils79.trim( null ), '');
+		assert.strictEqual(utils79.trim( 123 ), '123');
+		assert.strictEqual(utils79.trim( 123.12 ), '123.12');
 		done();
 
 	});
@@ -124,6 +151,17 @@ describe('Base64に変換する', function() {
 
 	});
 
+	it('Base64変換(Non-Strings)', function(done) {
+		this.timeout(10*1000);
+
+		assert.strictEqual(utils79.base64_decode( utils79.base64_encode(undefined) ), '');
+		assert.strictEqual(utils79.base64_decode( utils79.base64_encode(null) ), '');
+		assert.strictEqual(utils79.base64_decode( utils79.base64_encode(123) ), '123');
+		assert.strictEqual(utils79.base64_decode( utils79.base64_encode(123.12) ), '123.12');
+		done();
+
+	});
+
 });
 
 describe('Hash', function() {
@@ -135,9 +173,29 @@ describe('Hash', function() {
 
 	});
 
+	it('md5(Non-Strings)', function(done) {
+		this.timeout(10*1000);
+		assert.strictEqual(utils79.md5( undefined ), utils79.md5( '' ));
+		assert.strictEqual(utils79.md5( null ), utils79.md5( '' ));
+		assert.strictEqual(utils79.md5( 123 ), utils79.md5( '123' ));
+		assert.strictEqual(utils79.md5( 123.12 ), utils79.md5( '123.12' ));
+		done();
+
+	});
+
 	it('sha1', function(done) {
 		this.timeout(10*1000);
 		assert.strictEqual(utils79.sha1( 'TEST' ), '984816fd329622876e14907634264e6f332e9fb3');
+		done();
+
+	});
+
+	it('sha1(Non-Strings)', function(done) {
+		this.timeout(10*1000);
+		assert.strictEqual(utils79.sha1( undefined ), utils79.sha1( '' ));
+		assert.strictEqual(utils79.sha1( null ), utils79.sha1( '' ));
+		assert.strictEqual(utils79.sha1( 123 ), utils79.sha1( '123' ));
+		assert.strictEqual(utils79.sha1( 123.12 ), utils79.sha1( '123.12' ));
 		done();
 
 	});
@@ -196,6 +254,17 @@ describe('パスの正規化', function() {
 
 	});
 
+	it('normalize_path(Non-Strings)', function(done) {
+		this.timeout(10*1000);
+
+		assert.strictEqual(utils79.normalize_path(undefined), '');
+		assert.strictEqual(utils79.normalize_path(null), '');
+		assert.strictEqual(utils79.normalize_path(123), '123');
+		assert.strictEqual(utils79.normalize_path(123.12), '123.12');
+		done();
+
+	});
+
 });
 
 describe('正規表現のエスケープ', function() {
@@ -205,6 +274,17 @@ describe('正規表現のエスケープ', function() {
 
 		assert.strictEqual(utils79.regexp_quote('http://www.com/a/b/cde.fg?a=b'), 'http\\:\\/\\/www\\.com\\/a\\/b\\/cde\\.fg\\?a\\=b');
 		assert.strictEqual(utils79.regexp_quote('(){}!'), '\\(\\)\\{\\}\\!');
+		done();
+
+	});
+
+	it('regexp_quote(Non-Strings)', function(done) {
+		this.timeout(10*1000);
+
+		assert.strictEqual(utils79.regexp_quote(undefined), undefined);
+		assert.strictEqual(utils79.regexp_quote(null), null);
+		assert.strictEqual(utils79.regexp_quote(123), 123);
+		assert.strictEqual(utils79.regexp_quote(123.12), 123.12);
 		done();
 
 	});
