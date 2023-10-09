@@ -93,4 +93,9 @@
 	 */
 	exports.h = require('./apis/h.js');
 
+	/**
+	 * 正規表現のメタ文字をエスケープする
+	 */
+	exports.preg_quote = require('./apis/preg_quote.js');
+
 })(exports);

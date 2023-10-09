@@ -217,6 +217,18 @@ describe('str_pad()', function() {
 	});
 });
 
+describe('preg_quote()', function() {
+	it('preg_quote()', function(done) {
+		this.timeout(10*1000);
+		assert.strictEqual(utils79.preg_quote('123'), '123');
+		assert.strictEqual(utils79.preg_quote('https://aaa.bbb/index.html'), 'https://aaa\\.bbb/index\\.html');
+		assert.strictEqual(utils79.preg_quote( undefined ), null);
+		assert.strictEqual(utils79.preg_quote( null ), null);
+		done();
+
+	});
+});
+
 describe('ファイルとディレクトリの存在確認', function() {
 
 	it('is_file, is_dir', function(done) {

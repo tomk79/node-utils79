@@ -95,12 +95,17 @@ URIスキーム(http, https, ftp など) で始まる場合、2つのスラッ�
 
 文字列をn文字ずつ分割する。
 
+### utils79.preg_quote(str);
+
+正規表現のメタ文字をエスケープする。
+
 
 ## 更新履歴 - Change log
 
 ### utils79 v0.1.0 (リリース日未定)
 
 - `str_pad()` を追加。
+- `preg_quote()` を追加。
 
 ### utils79 v0.0.5 (2018-09-01)
 
