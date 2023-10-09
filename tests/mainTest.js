@@ -202,6 +202,21 @@ describe('Hash', function() {
 
 });
 
+describe('str_pad()', function() {
+	it('str_pad()', function(done) {
+		this.timeout(10*1000);
+		assert.strictEqual(utils79.str_pad( '123', 5, '0', 'left'), '00123');
+		assert.strictEqual(utils79.str_pad( 123, 5, '0', 'left'), '00123');
+		assert.strictEqual(utils79.str_pad( 'あいう', 5, '0', 'left'), '00あいう');
+		assert.strictEqual(utils79.str_pad( '123', 5, '0', 'both'), '01230');
+		assert.strictEqual(utils79.str_pad( '123', 5, '0', 'right'), '12300');
+		assert.strictEqual(utils79.str_pad( undefined ), null);
+		assert.strictEqual(utils79.str_pad( null ), null);
+		done();
+
+	});
+});
+
 describe('ファイルとディレクトリの存在確認', function() {
 
 	it('is_file, is_dir', function(done) {

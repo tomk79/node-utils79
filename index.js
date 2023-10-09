@@ -44,6 +44,11 @@
 	exports.sha1 = require('./apis/sha1.js');
 
 	/**
+	 * 文字列を指定された桁数になるように埋める
+	 */
+	exports.str_pad = require('./apis/str_pad.js');
+
+	/**
 	 * ファイルが存在するか調べる
 	 */
 	exports.is_file = require('./apis/is_file.js');
