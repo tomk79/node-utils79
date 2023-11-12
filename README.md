@@ -102,7 +102,7 @@ URIスキーム(http, https, ftp など) で始まる場合、2つのスラッ�
 
 ## 更新履歴 - Change log
 
-### utils79 v0.1.0 (リリース日未定)
+### utils79 v0.1.0 (2023年11月13日)
 
 - `str_pad()` を追加。
 - `preg_quote()` を追加。
